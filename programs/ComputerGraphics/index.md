@@ -45,7 +45,7 @@
 
 ### 在线演示
 
-[点击进入](https://zhengbili.github.io/programs/ComputerGraphics/MyPlatform/MyPlatform.html)
+[demo](https://zhengbili.github.io/programs/ComputerGraphics/MyPlatform/MyPlatform.html)
 
 [源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/MyPlatform/)
 
@@ -72,6 +72,6 @@
 
 ### 在线演示
 
-[点击进入](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
+[demo](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
 
 [源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/OnlyMyCube/)
