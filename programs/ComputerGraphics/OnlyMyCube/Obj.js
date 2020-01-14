@@ -54,8 +54,6 @@ class Model {
 		for(var filename of this.needLoaded)Ajax(this,filename);
 		this.Id=1;for(var modelname in models)if(models[modelname].Id>=this.Id)this.Id=models[modelname].Id+1;
 		this.Left=cross(this.Up,this.Direction);
-		//this.Direction=vec4(this.Direction);
-		//this.Position=vec4(this.Position);
 	}
 	getScalingMatrix() {
 		var m = mat4();
@@ -129,38 +127,6 @@ function onMouseDown(event) {
 		}
 	}
 }
-
-function onMouseMove(event) {
-	if (canvas.button == undefined) return;
-	minSize = Math.min(canvas.width, canvas.height);
-	if (selectedModel == undefined) {
-		var mouseMove = vec3(2 * event.movementX / minSize, -2 * event.movementY / minSize);
-		//console.log(mouseMove);
-		if (canvas.button == 0) {
-			world.eye = add(world.eye, mouseMove);
-			world.at = add(world.at, mouseMove);
-		}
-		if (canvas.button == 2) {
-			world.theta -= 350*Math.PI * mouseMove[0]/canvas.width;
-			world.eye[1] += 0.2 * mouseMove[1];
-		}
-	} else {
-		
-		var mouseMove = vec3(-2 * event.movementY / minSize, -2 * event.movementX / minSize, 0);
-		//var mousePos = vec2(2 * event.clientX / canvas.width - 1, 1 - 2 * event.clientY / canvas.height, -0.1);
-		//temp = mult(inverse4(world.getModelViewMatrix()), mult(inverse4(world.getProjectionMatrix()), transpose(mat4(vec4(mousePos, 0)))));
-		//mousePos = transpose(temp)[0].slice(0, 3);
-		var pos=matmul(mult(world.getProjectionMatrix(),mult(world.getModelViewMatrix(),model.getModelStateMatrix())),selectedModel.Position);
-		pos=add(pos,vec3(2 * event.movementX / canvas.width, -2 * event.movementY / canvas.height));
-		pos=matmul(mult(inverse(model.getModelStateMatrix()),mult(inverse(world.getModelViewMatrix()),inverse(world.getProjectionMatrix()))),pos);//vec3(2 * event.clientX / canvas.width - 1, 1 - 2 * event.clientY / canvas.height,pos[2])
-		console.log(model.getModelStateMatrix());
-		console.log(world.getModelViewMatrix());
-		console.log(model.getModelStateMatrix());
-		if (canvas.button == 0) selectedModel.Position = pos;
-		if (canvas.button == 2) selectedModel.Rotation = add(selectedModel.Rotation, scale(100, mouseMove));
-	}
-}
-	//window.onresize =render;
 
 function Ajax(model,filename) {
 	var xmlHttpReq = null;
@@ -313,7 +279,6 @@ function parse(model) {
 		part.Kd = model.materials[part.material]['Kd']?model.materials[part.material]['Kd']:vec4(0, 0, 0);
 		part.Ks = model.materials[part.material]['Ks']?model.materials[part.material]['Ks']:vec4(0, 0, 0);
 		part.Ns = model.materials[part.material]['Ns']?model.materials[part.material]['Ns']:30;
-		//else color=[Math.random(),Math.random(),Math.random()],console.log(name);
 		for (indexs of part['f']) {
 			for (var i = 0; i < indexs.length; i++) {
 				for(var j=0;j<3;j++){
@@ -349,7 +314,7 @@ function parse(model) {
 
 function render() {
 	if(models.cube&&models.cube1&&models.cube2){
-		var lose=Math.abs(models.cube.Position[0]-models.cube1.Position[0])<0.2*Math.sqrt(2) || Math.abs(models.cube.Position[0]-models.cube2.Position[0])<0.2*Math.sqrt(2);
+		var lose=Math.abs(models.cube.Position[0]-models.auto_cube.Position[0])>2-0.2*Math.sqrt(2);
 		if(lose){
 			document.getElementById('music').pause();
 			world.isRunning=false;
@@ -371,7 +336,6 @@ function render() {
 	gl.uniform4fv(gl.getUniformLocation(program, "lightDiffuse"), flatten(world.lightDiffuse));
 	gl.uniform4fv(gl.getUniformLocation(program, "lightSpecular"), flatten(world.lightSpecular));
 	gl.uniform4fv(gl.getUniformLocation(program, "lightPosition"), flatten(world.lightPosition));
-
 	gl.uniform4fv(gl.getUniformLocation(program, "eye"), flatten(vec4(world.eye)));
 	if(world.isRunning){models.sky.update();models.sun.update();}
 	if(selectedModel)models.beacon.update();
@@ -386,7 +350,7 @@ function render() {
 		requestAnimationFrame(render);
 	}
 	else{
-		timer=setTimeout(render,2000);
+		timer=setTimeout(render,1000);
 	}
 	if(lose)requestAnimationFrame(function (){
 		alert('菜！');
@@ -547,21 +511,6 @@ function initSun() {
 		model.Rotation[1] += (Date.now()-world.time)/12;
 		model.Position=add(world.at,[Math.sin((Date.now()-world.startTime)/1000),1,-1]);
 		world.lightPosition=vec4(model.Position);
-		/*var pos1=vec3(world.lightPosition);
-		var pos2=add(pos1,scale(4,matmul(model.getModelStateMatrix(),model.Direction)));
-		var theta2=mult(model.Rotation,vec3(1,0.5,1));
-		model.Size=0.05;
-		model.Position=pos2;
-		model.normalBuffer=model.normalBuffer2;
-		drawObj(model);
-		var pos3=add(pos2,scale(0.1,matmul(mult(rotateX(model.Rotation[0]), mult(rotateY(model.Rotation[1]*2), rotateZ(model.Rotation[2]))),model.Direction)));
-		model.Size=0.03;
-		model.Position=pos3;
-		model.normalBuffer=model.normalBuffer3;
-		drawObj(model);
-		model.Size=0.1;
-		model.Position=pos1;
-		model.normalBuffer=model.normalBuffer1;*/
 	}
 	return model;
 }
@@ -595,11 +544,8 @@ function initSky() {
 	model.texCoordBuffer=gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, model.texCoordBuffer);
 	gl.bufferData(gl.ARRAY_BUFFER, flatten(texcoords), gl.STATIC_DRAW);
-	//model.getRotateMatrix=function(){return mult(rotateX(this.Rotation[0]),rotateY(this.Rotation[1]));}
 	model.getModelStateMatrix=function(){return mult(inverse4(world.getModelViewMatrix()),mult(this.getTranslateMatrix(), mult(this.getRotateMatrix(), this.getScalingMatrix())));}
 	model.update=function(){
-		//model.Rotation[0]=Math.atan2(world.eye[1]-world.at[1],world.R)/Math.PI*180;
-		//model.Rotation[1]=world.theta/Math.PI*180-90;
 		if(world.ProjectionType=='ortho'){
 			//model.Position=subtract(world.at,[20*Math.cos(world.theta),0,20*Math.sin(world.theta)]);
 			model.Size=[10,5,5];

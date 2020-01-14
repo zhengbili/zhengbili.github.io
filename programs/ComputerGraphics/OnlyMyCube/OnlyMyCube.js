@@ -41,7 +41,18 @@ world.update = function() {
 		case 'B':
 			if(world.isRunning)models.cube.KeyFrames.push((Date.now()-world.startTime)/1000);
 			document.keyCode=undefined;break;
-		
+		case 'A':
+			models['auto_cube'].Printable=true;
+			delete models['cube'];
+			break;
+		case 'Z':
+			models['cube1'].Position[0]+=0.1;models['cube2'].Position[0]-=0.1;
+			models['cube1'].lastX+=0.1;models['cube2'].lastX-=0.1;
+			break;
+		case 'X':
+			models['cube1'].Position[0]-=0.1;models['cube2'].Position[0]+=0.1;
+			models['cube1'].lastX-=0.1;models['cube2'].lastX+=0.1;
+			break;
 		case 'Delete':
 			for(modelname in models)if(models[modelname].Id==selectedModel.Id){
 				delete models[modelname];
@@ -182,14 +193,12 @@ window.onload = function init() {
 				model.Printable=true;
 				model.V=14;
 				model.KeyPos=model.KeyPos+1;
-				model.Position[0]=models['auto_cube'].Position[0];
+				model.Position[0]=models['auto_cube'].Position[0]-5;
 				model.Position[1]=0;
 				model.Position[2]=models['auto_cube'].Position[2]-10;
 				//console.log('时间：'+world.gameTime+'线'+' 位置'+model.Position)
 			}
 		if (this.onGround) this.Position[1] = Math.abs(matmul(this.getRotateMatrix(),this.Bound)[1]) * this.Size + world.horizon;
-
-		//this.Position=add(world.at,[Math.sin(Date.now()/1000),0.4,Math.cos(Date.now()/1000)]);
 	}
 
 
@@ -216,8 +225,6 @@ window.onload = function init() {
 				//console.log('时间：'+world.gameTime+'线'+' 位置'+model.Position)
 			}
 		if (this.onGround) this.Position[1] = Math.abs(matmul(this.getRotateMatrix(),this.Bound)[1]) * this.Size + world.horizon;
-
-		//this.Position=add(world.at,[Math.sin(Date.now()/1000),0.4,Math.cos(Date.now()/1000)]);
 	}
 
 	models['handphone'] = new Model({
@@ -247,98 +254,19 @@ window.onload = function init() {
 		if (this.onGround) this.Position[1] = Math.abs(matmul(this.getRotateMatrix(),this.Bound)[1]) * this.Size + world.horizon;
 
 		this.Rotation[2]=nowTime*200;
-		//this.Position=add(world.at,[Math.sin(Date.now()/1000),0.4,Math.cos(Date.now()/1000)]);
 	}
-	/*models['aifeier']=new Model({
-		Size:0.5,
-		Position: [-1, 0, 0],
-		Rotation: [90,0,180],
-		Up: [0,0,1],
-		Direction: [0,1,0],
-		dirname: './building/',
-		needLoaded: ['aifeier.obj'],
-		onGround: false,
-		hasTexture: false,
-		Printable: true
-	});
-	models['aifeier'].update=function(){
-		model.Position[0]=models['auto_cube'].Position[0];
-		model.Position[1]=0;
-		model.Position[2]=models['auto_cube'].Position[2];
-	}*/
+
 	models['loli']=new Model({
 		Size:0.5,
-		Position: [-1, 0, 0],
-		Rotation: [90,0,180],
+		Position: [3, -0.4, -315],
+		Rotation: [90,0,135],
 		Up: [0,0,1],
 		Direction: [0,1,0],
 		dirname: './BunnyLoli/',
 		needLoaded: ['BunnyLoli.obj','BunnyLoli.mtl'],
-		onGround: false,
-		hasTexture: true,
-		Printable: false
+		onGround: true,
+		hasTexture: true
 	});
-	models['loli'].update=function(){
-		model.Position[0]=models['auto_cube'].Position[0]+1;
-		model.Position[1]=0;
-		model.Position[2]=models['auto_cube'].Position[2]-1;
-	}
-	
-	/*models['cat']=new Model({
-		Size:0.5,
-		Position: [-1, 0, 0],
-		Rotation: [90,0,180],
-		Up: [0,0,1],
-		Direction: [0,1,0],
-		dirname: './animal/',
-		needLoaded: ['12221_Cat_v1_l3.obj','12221_Cat_v1_l3.mtl'],
-		onGround: false,
-		hasTexture: true,
-		Printable: true
-	});
-	models['cat'].update=function(){
-		model.Position[0]=models['auto_cube'].Position[0]+2;
-		model.Position[1]=0;
-		model.Position[2]=models['auto_cube'].Position[2]-1;
-	}*/
-	
-	/*models['ship']=new Model({
-		Size:0.5,
-		Position: [-1, 0, 0],
-		Rotation: [90,0,180],
-		Up: [0,0,1],
-		Direction: [0,1,0],
-		dirname: './ship/',
-		needLoaded: ['Transport Shuttle_obj.obj','Transport Shuttle_obj.mtl'],
-		onGround: false,
-		hasTexture: true,
-		Printable: true
-	});
-	models['ship'].update=function(){
-		model.Position[0]=models['auto_cube'].Position[0]+2;
-		model.Position[1]=0;
-		model.Position[2]=models['auto_cube'].Position[2]-1;
-	}*/
-	
-	
-	
-	/*models['tree']=new Model({
-		Size:0.5,
-		Position: [-1, 0, 0],
-		Rotation: [90,0,180],
-		Up: [0,0,1],
-		Direction: [0,1,0],
-		dirname: './plant/',
-		needLoaded: ['lowpolytree.obj','lowpolytree.mtl'],
-		onGround: false,
-		hasTexture: false,
-		Printable: true
-	});
-	/*models['tree'].update=function(){
-		model.Position[0]=models['auto_cube'].Position[0]+2;
-		model.Position[1]=0;
-		model.Position[2]=models['auto_cube'].Position[2]-1;
-	}*/
 	
 	models['sphere']=initSphere();
 	models['sphere'].Printable=false;
@@ -351,7 +279,6 @@ window.onload = function init() {
 	canvas.onmousedown = onMouseDown;
 	canvas.ontouchend = function(event){onMouseDown();event.preventDefault();};
 	canvas.ontouchmove = function(event){event.preventDefault();};
-	//canvas.onmousemove = onMouseMove;
 	canvas.onmouseup = function(event) {
 		canvas.button = undefined;
 	}
@@ -370,17 +297,10 @@ window.onload = function init() {
 			world.isRunning=false;
 		}
 	}
-	canvas.onmousewheel = function(event) {
-		if (selectedModel == undefined) world.R += (event.wheelDelta / 1200);
-		else {
-			selectedModel.Size += Math.sqrt(selectedModel.Size) * (event.wheelDelta / 1200);
-			if (selectedModel.Size < 0.1) selectedModel.Size = 0.1;
-			if (selectedModel.Size > 10) selectedModel.Size = 10;
-		}
-	}
 	canvas.oncontextmenu = function() {
 		return false;
 	}
+
 	document.onkeydown = function(event){
 		if (event.keyCode==32){
 			var audio=document.getElementById('music');
@@ -400,20 +320,6 @@ window.onload = function init() {
 				world.isRunning=false;
 			}
 		}else document.keyCode = event.keyCode;
-		switch(keymap[document.keyCode]){
-			case 'A':
-				models['auto_cube'].Printable=true;
-				delete models['cube'];
-			break;
-			case 'Z':
-			models['cube1'].Position[0]+=0.1;models['cube2'].Position[0]-=0.1;
-			models['cube1'].lastX+=0.1;models['cube2'].lastX-=0.1;
-			break;
-			case 'X':
-			models['cube1'].Position[0]-=0.1;models['cube2'].Position[0]+=0.1;
-			models['cube1'].lastX-=0.1;models['cube2'].lastX+=0.1;
-			break;
-		}
 	}
 	document.onkeyup = function(event){if(document.keyCode!=32)document.keyCode=undefined;}
 }

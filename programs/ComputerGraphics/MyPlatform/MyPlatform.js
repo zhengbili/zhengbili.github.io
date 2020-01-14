@@ -340,7 +340,7 @@ function onMouseMove(event) {
 			world.at = add(world.at, mouseMove);
 		}
 		if (canvas.button == 2) {
-			world.theta -= 350*Math.PI * mouseMove[0]/canvas.width;
+			world.theta -= 360*Math.PI * mouseMove[0]/canvas.width;
 			world.eye[1] += 0.2 * mouseMove[1];
 		}
 	} else {
