@@ -74,4 +74,5 @@
 [demo](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
 [源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/OnlyMyCube/)
 
-<div align="center"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3244405&c=9733528" alt="AmazingCounters.com"></a></div>
+
+<div align="center"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3244405&c=9733528" onerror="javascript:this.src='https://www.cutercounter.com/hits.php?id=hexdaxnf&nd=6&style=11';" alt="计数器" /></div>
