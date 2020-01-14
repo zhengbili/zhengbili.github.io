@@ -13,7 +13,7 @@
 ## My Platform
 > 本程序仅为展示各种变换及渲染效果，物体可移动旋转删除，是为创造模式。娱乐模式参见OnlyMyCube，物体基本锁定，不可随意移动。
 
-![效果图]('mp.png')
+![效果图](https://raw.githubusercontent.com/zhengbili/zhengbili.github.io/master/programs/ComputerGraphics/mp.png)
 
 ### 键盘控制
 * V/Y/T/B/F/H：物体移动（前后上下左右）
@@ -44,12 +44,14 @@
 * 新科娘（不建议加载）：明暗+纹理
 
 ### 在线演示
+
 [点击进入](https://zhengbili.github.io/programs/ComputerGraphics/MyPlatform/MyPlatform.html)
-[源代码](https://github.com/zhengbili/zhengbili.github.io/programs/ComputerGraphics/MyPlatform/)
+
+[源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/MyPlatform/)
 
 ## Only My Cube
 
-![效果图]('omc.png')
+![效果图](https://raw.githubusercontent.com/zhengbili/zhengbili.github.io/master/programs/ComputerGraphics/omc.png)
 
 ### 键盘控制
 * 空格：开始/暂停
@@ -69,5 +71,7 @@
 * 左键（触屏）单击：选择物体/开始/转向
 
 ### 在线演示
+
 [点击进入](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
-[源代码](https://github.com/zhengbili/zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/)
+
+[源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/OnlyMyCube/)
