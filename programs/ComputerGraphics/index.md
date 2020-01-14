@@ -7,8 +7,8 @@
 - Chrome：`chrome --allow-file-access-from-files`
 
 ### 服务器模式
-- Python2：python -m SimpleHTTPServer
-- Python3：python -m http.server
+- Python2：`python -m SimpleHTTPServer`
+- Python3：`python -m http.server`
 
 ## My Platform
 > 本程序仅为展示各种变换及渲染效果，物体可移动旋转删除，是为创造模式。娱乐模式参见OnlyMyCube，物体基本锁定，不可随意移动。
