@@ -83,7 +83,7 @@
     // gitalk的主要参数
       clientID: `66f501f4d72bd67e824d`,   //上面获取到的值
       clientSecret: `623a2d94e0b64b247b890d324d8a7ef902ec1ac4`,//上面获取到的值
-      repo: `评论备份`,  //您刚才建立仓库的名字
+      repo: `zhengbili.github.io`,  //您刚才建立仓库的名字
       owner: 'zhengbili',   //你的GitHub用户名字
       admin: ['zhengbili'],  //你的GitHub用户的名字
       id: 'programs.ComputerGraphics', //id不能重复，如果重复就会把其他页面的评论引进来
