@@ -193,7 +193,7 @@ window.onload = function init() {
 				model.Printable=true;
 				model.V=14;
 				model.KeyPos=model.KeyPos+1;
-				model.Position[0]=models['auto_cube'].Position[0]-5;
+				model.Position[0]=models['auto_cube'].Position[0];
 				model.Position[1]=0;
 				model.Position[2]=models['auto_cube'].Position[2]-10;
 				//console.log('时间：'+world.gameTime+'线'+' 位置'+model.Position)
