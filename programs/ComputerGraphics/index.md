@@ -42,7 +42,7 @@
 * 新科娘（不建议加载）：明暗+纹理
 
 ### 在线演示
-[点击进入](MyPlatform/MyPlatform.html)
+[点击进入](https://zhengbili.github.io/programs/ComputerGraphics/MyPlatform/MyPlatform.html)
 
 ## Only My Cube
 
@@ -64,4 +64,4 @@
 * 左键（触屏）单击：选择物体/开始/转向
 
 ### 在线演示
-[点击进入](OnlyMyCube/OnlyMyCube.html)
+[点击进入](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
