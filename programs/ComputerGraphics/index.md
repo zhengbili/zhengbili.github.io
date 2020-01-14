@@ -73,3 +73,5 @@
 
 [demo](https://zhengbili.github.io/programs/ComputerGraphics/OnlyMyCube/OnlyMyCube.html)
 [源代码](https://github.com/zhengbili/zhengbili.github.io/blob/master/programs/ComputerGraphics/OnlyMyCube/)
+
+<div align="center"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3244405&c=9733528" alt="AmazingCounters.com"></a></div>
