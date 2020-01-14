@@ -13,6 +13,8 @@
 ## My Platform
 > 本程序仅为展示各种变换及渲染效果，物体可移动旋转删除，是为创造模式。娱乐模式参见OnlyMyCube，物体基本锁定，不可随意移动。
 
+![效果图]('mp.png')
+
 ### 键盘控制
 * V/Y/T/B/F/H：物体移动（前后上下左右）
 * W/S/A/D：光源移动（上下左右）
@@ -45,6 +47,8 @@
 [点击进入](https://zhengbili.github.io/programs/ComputerGraphics/MyPlatform/MyPlatform.html)
 
 ## Only My Cube
+
+![效果图]('omc.png')
 
 ### 键盘控制
 * 空格：开始/暂停
