@@ -53,18 +53,15 @@
 ![效果图](http://m.qpic.cn/psc?/V11as4g42Pug3I/I4FpFoYXzdFm.OkebEsY*qA0UtuIMaeAK7Mz.o2byv1*fJ3fJWxafTDYVZkeJ*Zk*VJ9m2L.qNJt*Nks1ItgN8YoWNgPK0nv5v7s*OGn0C0!/b)
 
 ### 键盘控制
-* 空格：开始/暂停
 * B：控制转向
 * P：转换视角模式 正交/透视（不建议使用）
 * F5：刷新重新游戏
 * Z：增加游戏难度
 * X：减小游戏难度
-* Delete：删除选中物体（把碰撞检测方块删了就是无敌模式）
+* Delete：删除选中物体（把碰撞检测方块删了就是无敌模式，不建议使用）
 * 自动模式：按A键进入
 * 空格：开始/暂停
-* P：转换视角模式 正交/透视
 * 左键单击：选择物体
-* Delete：删除选中物体（不建议使用）
 
 ### 鼠标控制
 * 左键（触屏）单击：选择物体/开始/转向
